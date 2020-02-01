@@ -1,0 +1,40 @@
+.navbar {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  min-height: 100px;
+  min-width: 500px;
+  text-align: center;
+
+}
+.navbar ul {
+ display: flex;
+ flex-direction: row;
+}
+
+.navbar li {
+  width: 150px;
+  display: block;
+  margin: 0 10px;
+  background-color: #aaa;
+  border: 1px solid white;
+}
+.navbar li a {
+width: 150px;
+display: block;
+}
+
+.navbar li:hover {
+  background-color: white;
+}
+
+.navbar li:hover .navlink {
+color: black;
+font-weight: bold;
+}
+
+.navbar .navlink {
+color: white;
+text-decoration: none;
+text-transform: uppercase;
+}

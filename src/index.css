@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,7 +9,37 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+label {
+  display: block;
+}
+
+
+
+.btn-save {
+display: inline-block;
+line-height: 100%;
+padding: 10px 25px;
+background-color: cornflowerblue;
+color: white;
+text-transform: uppercase;
+font-weight: bold;
+cursor: pointer;
+}
+
+.btn-save:hover {
+  background-color: darkblue;
+
+}
+
+
+
+.line {
+  width: 95%;
+  margin: 15px;
+  border-bottom: 1px solid grey;
+}
+
+.center {
+  text-align: center;
 }

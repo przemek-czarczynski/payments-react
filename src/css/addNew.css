@@ -1,0 +1,52 @@
+.addnewpayment-form {
+
+  background-color: #eee;
+  border: 1px solid #999
+}
+
+.addnewpayment {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.addnewpayment-form {
+  min-width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ddd;
+}
+
+.addnewpayment-form label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 70%;
+  margin-top: 10px;
+
+}
+
+.addnewpayment-form input,
+.addnewpayment-form textarea {
+  font-size: 1.1rem;
+  padding:0;
+
+}
+
+.text-right {
+  text-align: right;
+}
+
+.input-450 {
+  min-width: 450px;
+}
+
+.input-250 {
+  min-width: 250px;
+
+}
