@@ -70,10 +70,9 @@ class PaymentsAuth extends Component {
   }
   
   handleSubmitEdit = (payment)=>{
-
-    const {title, details, amount} = payment
+    const {title, details, amount, date, dayalert, paid} = payment
     firestore().collection('documents').doc(this.state.IdEdit).update({
-      title, details, amount
+      title, details, amount, date, dayalert, paid
     })
 
     let tempPayments = this.state.payments.filter((item)=>(item.id!==this.state.IdEdit))

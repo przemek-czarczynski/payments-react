@@ -1,0 +1,10 @@
+.SignUpLnk a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--main-bg-color);
+  transition: 0.2s;
+}
+
+.SignUpLnk a:hover {
+   border-bottom: 2px solid var(--main-bg-color);
+}

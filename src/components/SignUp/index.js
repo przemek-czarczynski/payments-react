@@ -5,11 +5,12 @@ import {
   withFirebase
 } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import '../../css/signup.css'
 
 
 const SignUpPage = () => (
-  <div>
-    <h1>SignUp</h1>
+  <div className="wrapper columns">
+    <h1>Sign Up Form</h1>
      <SignUpForm/>
     
   </div>
@@ -75,34 +76,34 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form className="signin" onSubmit={this.onSubmit}>
+        <label>full name</label>
         <input
           name="username"
           value={username}
           onChange={this.onChange}
           type="text"
-          placeholder="Full Name"
         />
+        <label>email address</label>
         <input
           name="email"
           value={email}
           onChange={this.onChange}
           type="text"
-          placeholder="Email Address"
         />
+        <label>password</label>
         <input
           name="passwordOne"
           value={passwordOne}
           onChange={this.onChange}
           type="password"
-          placeholder="Password"
         />
+        <label>Confirm Password</label>
         <input
           name="passwordTwo"
           value={passwordTwo}
           onChange={this.onChange}
           type="password"
-          placeholder="Confirm Password"
         />
         <button disabled={isInvalid} type="submit">Sign Up</button>
         {error && <p>{error.message}</p>}
@@ -111,7 +112,7 @@ class SignUpFormBase extends Component {
   }
 }
 const SignUpLink = () => (
-  <p>
+  <p className="SignUpLnk">
     Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
   </p>
 );

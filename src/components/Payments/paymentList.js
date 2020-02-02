@@ -59,7 +59,7 @@ class PaymentList extends Component {
         <div>
           <div className='columns'>
           <h1>{this.state.notPaid ? 'Not paid financial commitments' : 'All financial commitments'}</h1>
-            <p className='btn-save' onClick={handleNotPaid}>{!this.state.notPaid ? 'Tylko nie zaplacone' : 'Wszystkie'}</p>
+            <p className='btn-save' onClick={handleNotPaid}>{!this.state.notPaid ? 'Show Only UnPaid' : 'Show All'}</p>
           </div>
           <div className='tbheader'>
             <p className='itemRow-details center'>Title of payment</p>
