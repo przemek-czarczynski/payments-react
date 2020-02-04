@@ -16,8 +16,8 @@ const paymentItem = (props)=>{
     handleEdit(id)
   }
   const didpaid= paid ? 
-    <p className=' btn-confirmed center'>Paid</p>
-    :<p className=' btn-not-confirmed center' onClick={handlePaid}>Mark as Paid</p>
+    <p className='btn-confirmed center'>Paid</p>
+    :<p className='btn-not-confirmed center' onClick={handlePaid}>Mark as Paid</p>
   
   let styles = {}
   
@@ -36,17 +36,14 @@ const paymentItem = (props)=>{
 
   return (
     
-    <div className='itemRow' style={styles} onClick={handleIdEdit}>
-
-      <p className='itemRow-details '>{title}</p>
-      <p className='itemRow-details center'>{parseFloat(amount).toFixed(2)}</p>
-      <p className='itemRow-details center'>{date}</p>
-      
+    <div className='itemRow' style={styles} >
+      <p className='itemRow-details ' onClick={handleIdEdit}>{title}</p>
+      <p className='itemRow-details center' onClick={handleIdEdit} >{parseFloat(amount).toFixed(2)}</p>
+      <p className='itemRow-details center' onClick={handleIdEdit} >{date}</p>
+      <p className='itemRow-details center' onClick={handleIdEdit} >{left(date)}</p>
       {didpaid}
-
-      <p className='itemRow-details center' >{left(date)}</p>
-      
     </div>
+    
   )
 }
 
