@@ -21,7 +21,7 @@ const paymentItem = (props)=>{
   
   let styles = {}
   
-  if (left(date) < 0 )
+  if (left(date) < 0 && !paid )
   {
     styles= {
     backgroundColor: 'rgb(200, 21, 21)',

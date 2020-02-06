@@ -29,6 +29,7 @@ class PaymentsAuth extends Component {
     isFetched: false,
     isEditing: false,
     IdEdit:'',
+    isAddingNew: false,
     redirectPath: ''
   }
       
@@ -110,10 +111,8 @@ class PaymentsAuth extends Component {
   }
 
 
-  addNew = (payment)=>{
-         
+  addNew = (payment)=>{       
       payment.user=this.props.authUser.email;
-
       firestore().collection('documents').add(payment)
       .then(function (docRef) {
           // console.log("Document written with ID: ", docRef.id);
@@ -123,12 +122,16 @@ class PaymentsAuth extends Component {
           // console.error("Error adding document: ", error);
         });
               
-
       let payments=[...this.state.payments,payment];    
       
       this.setState({
-        payments
+        payments,
+        isAddingNew: false
       });     
+  }
+
+  changeFlag = ()=>{
+    this.setState({isAddingNew:true})
   }
 
   handleEdit = (id)=>{
@@ -145,7 +148,8 @@ class PaymentsAuth extends Component {
   clearPath = ()=>{
     this.setState({
       redirectPath : '',
-      isEditing: false
+      isEditing: false,
+      isAddingNew:false
     })
   }
 
@@ -154,7 +158,7 @@ class PaymentsAuth extends Component {
   }
   showList = ()=>{
    
-    return (!this.state.isEditing ? <PaymentList
+    return (!this.state.isEditing && !this.state.isAddingNew? <PaymentList
                   payments={this.state.payments}
                   confirmPaid={this.confirmPaid}                 
                   handleEdit={this.handleEdit} /> : '')
@@ -166,39 +170,34 @@ class PaymentsAuth extends Component {
   
     return(
       <div>
-          <Router>     
-
-            {this.renderRedirect()}
-            <Link to='/payments/add'>- Add New -</Link>    
             
-            
-            <Switch>
-              
-              
-
-              <Route path="/payments/add">             
-                <AddNew addNew={this.addNew}/>
-              </Route>    
-
-             
-              
-              <Route path="/payments/edit">             
-                <EditPayment 
-                  id={this.state.IdEdit}
-                  clearPath={this.clearPath} 
-                  handleSubmitEdit={this.handleSubmitEdit} 
+            <Router>     
+              {this.renderRedirect()}
+              <div className="topInfo">
+                <h1 className="topInfo-h1">Your Payments List</h1>
+                <div className="topInfo-add">
+                  <Link to='/payments/add' className="topInfo-add-link">Add New</Link>    
+                </div>
+              </div>
+              <Switch>
+                <Route path="/payments/add">             
+                  <AddNew 
+                    addNew={this.addNew}
+                    changeFlag={this.changeFlag}
+                    clearPath={this.clearPath} 
                   />
-              </Route>  
-            </Switch>
-      
-          </Router>
-          {this.showMessage()}
-         {this.showList()}
-        {/* {this.state.isFetching ? 'Fetching' :  <PaymentList
-                  payments={this.state.payments}
-                  confirmPaid={this.confirmPaid}                 
-                  handleEdit={this.handleEdit} /> } */}
-
+                </Route>    
+                <Route path="/payments/edit">             
+                  <EditPayment 
+                    id={this.state.IdEdit}
+                    clearPath={this.clearPath} 
+                    handleSubmitEdit={this.handleSubmitEdit} 
+                    />
+                </Route>  
+              </Switch>        
+            </Router>
+            {this.showMessage()}
+            {this.showList()}
           </div>
     
     )

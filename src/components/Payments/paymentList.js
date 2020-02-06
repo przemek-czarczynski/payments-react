@@ -7,50 +7,43 @@ import left from '../functions/left';
 class PaymentList extends Component {
   state={
     notPaid : true,
-    startDate : '',
-    endDate : ''
+    startDate: new Date().toISOString().substr(0, 10),
+    endDate: '',
   }
   
-  getDates = ()=> {
-      const pdate =  new Date();
-      const year = pdate.getFullYear() ;
-      const month = ( (pdate.getMonth()+1) > 9) ? (pdate.getMonth()+1) : `0${(pdate.getMonth()+1)}` ;
-      const day = (pdate.getDate() > 9) ? pdate.getDate(): `0${pdate.getDate()};`
+  getDates = (days = 7 )=> {
+      let pdate =  new Date();
+      let year = pdate.getFullYear() ;
+      let month = ( (pdate.getMonth()+1) > 9) ? (pdate.getMonth()+1) : `0${(pdate.getMonth()+1)}`;
+      let day = (pdate.getDate() > 9) ? pdate.getDate(): `0${pdate.getDate()}`;
+      
+      const startDate = `${year}-${month}-${day}`;
+      
+      let endDate = pdate.getTime() + ((24 * 60 * 60 * 1000) * days)
+      pdate = new Date(endDate)
+      year = pdate.getFullYear();
+      month = ((pdate.getMonth() + 1) > 9) ? (pdate.getMonth() + 1) : `0${(pdate.getMonth()+1)}`;
+      day = (pdate.getDate() > 9) ? pdate.getDate() : `0${pdate.getDate()}`;
 
-      const date1 = `${year}-${month}-${day}`;
-      const date2 = `${year}-${month}-${day}`;
-      console.log(typeof(date1))
+      endDate = `${year}-${month}-${day}`;
+
       this.setState({
-        startDate: date1,
-        endDate: date2
+        startDate,
+        endDate
       });
     };
 
-  async componentDidMount() {
-    console.log(this.state.startDate)
-    await this.getDates()  
+  componentDidMount() {
+    this.getDates()  
   }
 
   handleChangeDate = (e)=>{
-    console.log(typeof(e.target.value))
     this.setState( {
       [e.target.id]: e.target.value
     })
   }
 
-  dateRange = ()=> {
-    return (
-      <>
-        <label>From:           
-          <input type="date" id='startDate' onChange={this.handleChangeDate} value={this.state.startDate}/>
-        </label>
-        
-        <label>To:      
-          <input type="date" id='endDate' onChange={this.handleChangeDate} value={this.state.endDate}/>
-        </label>
-      </>
-    )
-  }
+  
 
   render() {
     let sortlist=[]
@@ -65,7 +58,13 @@ class PaymentList extends Component {
     sortlist = props.payments.sort(compareLeftdays);
     if (this.state.notPaid) {
       let notpaidlist = [...sortlist]
-      sortlist= notpaidlist.filter(item => { return item.paid===false})
+      sortlist = notpaidlist.filter(item => {
+        return item.paid === false && item.date >= this.state.startDate && item.date <= this.state.endDate
+      })
+    } else {
+      sortlist = sortlist.filter(item => {
+        return item.date >= this.state.startDate && item.date <= this.state.endDate
+      })
     }
     
 
@@ -79,26 +78,38 @@ class PaymentList extends Component {
 
     }
 
-  let list = sortlist.map(item => (
-   
-    <tr key={item.id}>
-      <PaymentItem 
-        item={item}
-        confirmPaid={confirmPaid} 
-        handleEdit={handleEdit} 
-        />
-    </tr>  
+    let list = sortlist.map(item => (
     
-    ));
+      <tr key={item.id}>
+        <PaymentItem 
+          item={item}
+          confirmPaid={confirmPaid} 
+          handleEdit={handleEdit} 
+          />
+      </tr>  
+      
+      ));
 
-  const displayh1 = () => {
-      const tb = tabheader();
-      return (props.payments.length > 0 ? tb : <h1> Empty List </h1>)
+    const displayh1 = () => {
+        const tb = tabheader();
+        return (props.payments.length > 0 ? tb : <h1> Empty List </h1>)
 
-      }
-  
+        }
+    
 
+    const dateRange = () => {
+      return (
+        <div className="dateRange">
+          <label>From:
+          <input type="date" id='startDate' onChange={this.handleChangeDate} value={this.state.startDate} />
+          </label>
 
+          <label>To:
+          <input type="date" id='endDate' onChange={this.handleChangeDate} value={this.state.endDate} />
+          </label>
+        </div>
+      )
+    }
 
 
   
@@ -106,9 +117,9 @@ class PaymentList extends Component {
   const tabheader= ()=>{
     return (
         <div>
-          <h1>{this.state.notPaid ? 'Not paid financial commitments' : 'All financial commitments'}</h1>
+          <h2>{this.state.notPaid ? 'Not paid financial commitments' : 'All financial commitments'}</h2>
           <div className='filterRow'>
-            {this.dateRange()}
+            {dateRange()}
           
             <p className='btn-save' onClick={handleNotPaid}>{!this.state.notPaid ? 'Show Only UnPaid' : 'Show All'}</p>
           </div>

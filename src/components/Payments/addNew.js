@@ -11,33 +11,20 @@ state={
         title: '',
         details: '',
         amount: '0',
-        date: '',
+        date: new Date().toISOString().substr(0, 10), 
         dayalert: '0',
         paid: false,
         redirect: false,
         cancel: false
   }
   
+  componentDidMount() {
+    this.props.changeFlag();
+  }
   renderRedirect = () => {
     if (this.state.redirect || this.state.cancel) {
       return <Redirect to = '/payments' />
     }
-  }
-  componentDidMount(){
-    
-    const getDate = ()=> {
-      const pdate =  new Date();
-      const year = pdate.getFullYear() ;
-      const month = ( (pdate.getMonth()+1) > 9) ? (pdate.getMonth()+1) : `0${(pdate.getMonth()+1)}` ;
-      const day = pdate.getDate();
-
-      const date = `${year}-${month}-${day}`;
-      this.setState({
-        date
-      });
-    };
-
-    getDate();
   }
 
   
@@ -56,13 +43,14 @@ state={
   }
 
     handleCancel = (e) => {
+      this.props.clearPath()
       this.setState({
         cancel: true
       })
     }
   render(){
+    
     return (
-      
       <div className='addnewpayment'>
         {  this.renderRedirect()
         }
@@ -84,10 +72,10 @@ state={
         <label htmlFor="amount">Date Of Payment:      
           <input className='text-right input-250' type="date" id='date' onChange={this.handleChange} value={this.state.date}/>
         </label>
-
-        <label htmlFor="">Set Alert Before the Payment Date
+        {/* this does not work */}
+        {/* <label htmlFor="">Set Alert Before the Payment Date
           <input className='text-right input-250' type="number" id="dayalert" min='0' onChange={this.handleChange} placeholder="" value={this.state.dayalert}/>
-        </label>
+        </label> */}
 
         <div className="line"></div>
         <button className="btn-save">Save</button>
