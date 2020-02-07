@@ -88,7 +88,21 @@ state={
     })
   }
 
+  isPaid = ()=> {
+    const ispaid = !this.state.paid ? '0' : '1'; 
+    return (
+    <label>Payment is Paid
+          <select name='paid' value={ispaid} onChange={this.handlePaid}>
+          {console.log(this.state.paid)}
+            <option value='1'>Yes</option>
+            <option value='0' >No</option>
+            
+          </select>
+    </label>
+  )}
+
   render(){
+    
     return (
       
       <div className='addnewpayment'>
@@ -113,16 +127,11 @@ state={
           <input className='text-right input-250' type="date" id='date' onChange={this.handleChange} value={this.state.date}/>
         </label>
 
-        <label htmlFor="">Set Alert Before Date of Payment
+        {/* <label htmlFor="">Set Alert Before Date of Payment
           <input className='text-right input-250' type="number" id="dayalert" min='0' onChange={this.handleChange} value={this.state.dayalert}/>
-        </label>
+        </label> */}
 
-        <label>Payment is Paid
-          <select name='paid' onChange={this.handlePaid}>
-            <option value='1'>Yes</option>
-            <option value=''>No</option>
-          </select>
-        </label>
+        {this.isPaid()}
 
         <div className="line"></div>
         <button className="btn-save">Zapisz</button>

@@ -50,6 +50,7 @@ class PaymentList extends Component {
     const props = this.props
     const confirmPaid = props.confirmPaid;
     const handleEdit = props.handleEdit;
+    const handleDelete=props.handleDelete;
     
     const compareLeftdays = (a,b)=> {
       return left(a.date) - left(b.date)
@@ -85,6 +86,7 @@ class PaymentList extends Component {
           item={item}
           confirmPaid={confirmPaid} 
           handleEdit={handleEdit} 
+          handleDelete={handleDelete}
           />
       </tr>  
       
@@ -129,6 +131,7 @@ class PaymentList extends Component {
             <p className='itemRow-details'>Date of payment</p>
             <p className='itemRow-details'>Left days to pay</p> 
             <p className='itemRow-details'>Status</p>    
+            <p className='itemRow-trash'></p>    
           </div>
       </div>
     )

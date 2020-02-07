@@ -1,53 +1,47 @@
-.addnewpayment-form {
-
-  background-color: #eee;
-  border: 1px solid #999
-}
-
 .addnewpayment {
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
-
 }
+
 
 .addnewpayment-form {
   /* min-width: 80%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 60vw;
+  flex-wrap: wrap;
   align-items: center;
-  background-color: #ddd;
+  background-color: rgb(181, 222, 255);
+  box-shadow: 2px 2px 2px grey;
+
 }
 
 .addnewpayment-form label {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* min-width: 70%; */
-  margin-top: 10px;
+  display: block;  
+  width: 50vw;
 
 }
 
 .addnewpayment-form input,
 .addnewpayment-form textarea {
+  display: block;
   font-size: 1.1rem;
-  padding:0;
-
+  width: 50vw;
 }
 
-.text-right {
-  text-align: right;
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50vw;
 }
 
-.input-450 {
-  min-width: 450px;
-}
-
-.input-250 {
-  min-width: 250px;
-
+.form-row .form-amount {
+  display: block;
+  width: 90px;
+  margin-right: 70px;
 }

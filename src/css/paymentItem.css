@@ -41,6 +41,10 @@
   padding-left: 10px;
 }
 
+.itemRow-trash{
+  display: block;
+  margin: 0 25px;
+}
 
 
 .btn-not-confirmed,
@@ -85,4 +89,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.trash {
+  color : black;
+  margin: 0 10px;
+  transform: scale(0.7);
+  width: 50px;
+  height: 50px;
+  
+}
+
+.svgWrapper {
+  display: flex;
+  /* overflow: hidden; */
+  width: 50px;
+  height: 50px;
+  z-index: 99;
+  cursor: pointer;
+  background-color: white;
+  transition: 0.3s;
+}
+.svgWrapper:hover {
+  background-color: yellow;
+  
 }

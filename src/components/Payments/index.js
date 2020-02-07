@@ -140,6 +140,15 @@ class PaymentsAuth extends Component {
     this.setState({redirectPath: 'payments/edit'})
   }
 
+  handleDelete = (id) => {
+    let newPayments = this.state.payments.filter(item => (item.id !== id));
+    this.setState({payments : newPayments})
+    firestore().collection("documents").doc(id).delete().then(function () {
+      console.log("Document successfully deleted!");
+    }).catch(function (error) {
+      console.error("Error removing document: ", error);
+    });
+  }
   renderRedirect = ()=>{
     const path = this.state.redirectPath
     if (path) return <Redirect to={path}/>
@@ -154,14 +163,15 @@ class PaymentsAuth extends Component {
   }
 
   showMessage = ()=> {
-    return (this.state.isFetching ? <h1>Fetchng Data...</h1> : '')
+    return (this.state.isFetching ? <div className="center" ><h1>Fetchng Data...</h1></div> : '')
   }
   showList = ()=>{
    
     return (!this.state.isEditing && !this.state.isAddingNew? <PaymentList
                   payments={this.state.payments}
                   confirmPaid={this.confirmPaid}                 
-                  handleEdit={this.handleEdit} /> : '')
+                  handleEdit={this.handleEdit}
+                  handleDelete={this.handleDelete} /> : '')
   }
   render(){
     // if (this.isFetched) {this.getData()}
