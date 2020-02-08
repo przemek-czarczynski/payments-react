@@ -176,7 +176,11 @@ class PaymentsAuth extends Component {
   render(){
     // if (this.isFetched) {this.getData()}
     
-   
+    let stylesAddBtn = this.state.isAddingNew || this.state.isEditing ? {
+      display: 'none'
+    }: {
+      display: 'flex'
+    }
   
     return(
       <div>
@@ -186,7 +190,7 @@ class PaymentsAuth extends Component {
               <div className="topInfo">
                 <h1 className="topInfo-h1">Your Payments List</h1>
                 <div className="topInfo-add">
-                  <Link to='/payments/add' className="topInfo-add-link">Add New</Link>    
+                  <Link to='/payments/add' className="topInfo-add-link" style={stylesAddBtn}>Add New</Link>    
                 </div>
               </div>
               <Switch>

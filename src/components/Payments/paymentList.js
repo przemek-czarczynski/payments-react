@@ -119,16 +119,18 @@ class PaymentList extends Component {
   const tabheader= ()=>{
     return (
         <div>
-          <h2>{this.state.notPaid ? 'Not paid financial commitments' : 'All financial commitments'}</h2>
-          <div className='filterRow'>
-            {dateRange()}
           
-            <p className='btn-save' onClick={handleNotPaid}>{!this.state.notPaid ? 'Show Only UnPaid' : 'Show All'}</p>
+          <div className='filterRow'>
+            <div className="filterRange">
+              <p className="description">{this.state.notPaid ? 'Now it shows only NOT Paid your bills ' : 'Now it shows ALL your payments '}</p>
+              {dateRange()}
+            </div>    
+            <p className='btn-save' onClick={handleNotPaid}>{!this.state.notPaid ? 'Show UnPaid' : 'Show All'}</p>
           </div>
           <div className='tbheader'>
             <p className='itemRow-details'>Title of payment</p>
             <p className='itemRow-details '>Amount</p>
-            <p className='itemRow-details'>Date of payment</p>
+            <p className='itemRow-details'>Due Date</p>
             <p className='itemRow-details'>Left days to pay</p> 
             <p className='itemRow-details'>Status</p>    
             <p className='itemRow-trash'></p>    

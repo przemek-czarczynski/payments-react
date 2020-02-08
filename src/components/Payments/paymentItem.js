@@ -33,19 +33,38 @@ const paymentItem = (props)=>{
     color : 'white'
     }
   } 
+ 
   if (left(date) === '0') {
     styles= {
       backgroundColor: 'rgb(240, 191, 30)',
       color: 'white'
     }
-  }  
+  } 
+
+   if ( paid )
+  {
+    styles= {
+    backgroundColor: 'rgb(181, 254, 97)'
+    }
+  } 
+
+  const infoDays = ()=>{
+    if ((left(date) < 0) && (!paid)) {
+      return (<p className='itemRow-details center' onClick={handleIdEdit} >overdue</p>)
+    } else if (paid) {
+      return (<p className='itemRow-details center' onClick={handleIdEdit} >-</p>)
+    } else {
+      return (<p className='itemRow-details center' onClick={handleIdEdit} >{left(date)}</p>)
+    }
+    }
 
   return (
     <div className='itemRow' style={styles} >
       <p className='itemRow-details ' onClick={handleIdEdit}>{title}</p>
       <p className='itemRow-details center' onClick={handleIdEdit} >{parseFloat(amount).toFixed(2)}</p>
       <p className='itemRow-details center' onClick={handleIdEdit} >{date}</p>
-      <p className='itemRow-details center' onClick={handleIdEdit} >{left(date)}</p>
+      {/* <p className='itemRow-details center' onClick={handleIdEdit} >{left(date)<0 ? 'overdue' : left(date)}</p> */}
+      {infoDays()}
       {didpaid}
       <div className="svgWrapper" onClick={handleIdDelete}><Trash className="trash"/></div>
       

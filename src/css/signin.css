@@ -52,3 +52,7 @@
   height: 1rem;
   font-size: 0.8rem;
 }
+
+.signin .confirmPass {
+  margin-top: 20px;
+}

@@ -49,9 +49,11 @@ label {
 display: inline-block;
 line-height: 100%;
 padding: 10px 25px;
+width: 120px;
 background-color: cornflowerblue;
 color: white;
 text-transform: uppercase;
+text-align: center;
 font-weight: bold;
 cursor: pointer;
 }

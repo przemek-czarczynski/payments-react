@@ -63,7 +63,7 @@ state={
 
   handlePaid = (e)=>{
      this.setState( {
-      paid: (e.currentTarget.value ? true : false)
+      paid: (e.currentTarget.value==='1' ? true : false)
     })
   }
 
@@ -91,9 +91,8 @@ state={
   isPaid = ()=> {
     const ispaid = !this.state.paid ? '0' : '1'; 
     return (
-    <label>Payment is Paid
+    <label className="form-isPaid">Payment is Paid
           <select name='paid' value={ispaid} onChange={this.handlePaid}>
-          {console.log(this.state.paid)}
             <option value='1'>Yes</option>
             <option value='0' >No</option>
             
@@ -108,35 +107,39 @@ state={
       <div className='addnewpayment'>
         {  this.renderRedirect()
         }
-        <h1>Edit Payment Details</h1>
-        <form className="addnewpayment-form" onSubmit={this.handleSubmit}>
         
-        <label htmlFor="title">Title: 
-          <input className='input-450' type="text" id="title" onChange={this.handleChange} value={this.state.title}/>
-        </label>
+        <form className="addnewpayment-form" onSubmit={this.handleSubmit}>
+          <p className="description">Edit Payment Details</p>
+          <label htmlFor="title">Title: 
+            <input className='input-450' type="text" id="title" onChange={this.handleChange} value={this.state.title}/>
+          </label>
 
-        <label className='textarea' htmlFor="details">Details: 
-          <textarea className='input-450' id="details" onChange={this.handleChange} value={this.state.details}/>
-        </label>
+          <label className='textarea' htmlFor="details">Details: 
+            <textarea className='input-450' id="details" onChange={this.handleChange} value={this.state.details}/>
+          </label>
 
-        <label htmlFor="amount">Amount:
-          <input className='text-right input-250' type="number" step='0.01' id="amount" min='0' onChange={this.handleChange} value={this.state.amount}/>
-        </label>
+          <div className="form-row">
+            <label>Amount:
+              <input className="form-amount" type="number" step='0.01' id="amount" min='0' onChange={this.handleChange} value={this.state.amount}/>
+            </label>
 
-        <label htmlFor="amount">Date Of Payment:      
-          <input className='text-right input-250' type="date" id='date' onChange={this.handleChange} value={this.state.date}/>
-        </label>
+            <label className="form-label">Date Of Payment:      
+              <input className="form-date" type="date" id='date' onChange={this.handleChange} value={this.state.date}/>
+            </label>
+          </div>
+            {this.isPaid()}
+          
+          {/* <label htmlFor="">Set Alert Before Date of Payment
+            <input className='text-right input-250' type="number" id="dayalert" min='0' onChange={this.handleChange} value={this.state.dayalert}/>
+          </label> */}
 
-        {/* <label htmlFor="">Set Alert Before Date of Payment
-          <input className='text-right input-250' type="number" id="dayalert" min='0' onChange={this.handleChange} value={this.state.dayalert}/>
-        </label> */}
+          
 
-        {this.isPaid()}
-
-        <div className="line"></div>
-        <button className="btn-save">Zapisz</button>
-        <p className="btn-save" onClick={this.handleCancel}>Anuluj</p>
-      
+          <div className="line"></div>
+          <div className="form-btns">
+            <button className="btn-save">Zapisz</button>
+            <button className="btn-save" onClick={this.handleCancel}>Anuluj</button>
+          </div>
       </form>
         
     </div>
