@@ -9,29 +9,32 @@ class PaymentList extends Component {
     notPaid : true,
     startDate: new Date().toISOString().substr(0, 10),
     endDate: '',
+    overdueList:[],
+    isClickedOverdue : false
   }
   
   getDates = (days = 7 )=> {
-      let pdate =  new Date();
-      let year = pdate.getFullYear() ;
-      let month = ( (pdate.getMonth()+1) > 9) ? (pdate.getMonth()+1) : `0${(pdate.getMonth()+1)}`;
-      let day = (pdate.getDate() > 9) ? pdate.getDate(): `0${pdate.getDate()}`;
-      
-      const startDate = `${year}-${month}-${day}`;
-      
-      let endDate = pdate.getTime() + ((24 * 60 * 60 * 1000) * days)
-      pdate = new Date(endDate)
-      year = pdate.getFullYear();
-      month = ((pdate.getMonth() + 1) > 9) ? (pdate.getMonth() + 1) : `0${(pdate.getMonth()+1)}`;
-      day = (pdate.getDate() > 9) ? pdate.getDate() : `0${pdate.getDate()}`;
+    let pdate =  new Date();
+    let year = pdate.getFullYear() ;
+    let month = ( (pdate.getMonth()+1) > 9) ? (pdate.getMonth()+1) : `0${(pdate.getMonth()+1)}`;
+    let day = (pdate.getDate() > 9) ? pdate.getDate(): `0${pdate.getDate()}`;
+    
+    const startDate = `${year}-${month}-${day}`;
+    
+    let endDate = pdate.getTime() + ((24 * 60 * 60 * 1000) * days)
+    pdate = new Date(endDate)
+    year = pdate.getFullYear();
+    month = ((pdate.getMonth() + 1) > 9) ? (pdate.getMonth() + 1) : `0${(pdate.getMonth()+1)}`;
+    day = (pdate.getDate() > 9) ? pdate.getDate() : `0${pdate.getDate()}`;
 
-      endDate = `${year}-${month}-${day}`;
+    endDate = `${year}-${month}-${day}`;
 
-      this.setState({
-        startDate,
-        endDate
-      });
-    };
+    this.setState({
+      startDate,
+      endDate
+    });
+  };
+
 
   componentDidMount() {
     this.getDates()  
@@ -43,10 +46,16 @@ class PaymentList extends Component {
     })
   }
 
-  
+
+  setOverduePayments = (overdueList) => {
+    this.setState({overdueList,
+    isClickedOverdue: !this.state.isClickedOverdue
+  })
+  }
 
   render() {
     let sortlist=[]
+
     const props = this.props
     const confirmPaid = props.confirmPaid;
     const handleEdit = props.handleEdit;
@@ -55,8 +64,23 @@ class PaymentList extends Component {
     const compareLeftdays = (a,b)=> {
       return left(a.date) - left(b.date)
     }
+    
+    let overdueList = props.payments.filter(item => {
+      const todayDate = new Date().toISOString().substr(0, 10)
+      return item.paid === false && item.date < todayDate
+    })
+
   
+    const overdueShow =()=>{
+      return (
+        overdueList.length>0 ? <div className="">You have {overdueList.length} overdue payments 
+        <p className='btn-save' onClick={()=>this.setOverduePayments(overdueList)}>{this.state.isClickedOverdue?'Back':'Show Me'}</p>
+        </div> : ''
+      )
+    }
+
     sortlist = props.payments.sort(compareLeftdays);
+
     if (this.state.notPaid) {
       let notpaidlist = [...sortlist]
       sortlist = notpaidlist.filter(item => {
@@ -71,7 +95,8 @@ class PaymentList extends Component {
 
     const handleNotPaid = () => {
         this.setState({
-          notPaid: !this.state.notPaid
+          notPaid: !this.state.notPaid,
+          isClickedOverdue : false
         })
         // sortlist = sortlist.filter( item => {
         //   if (item.paid === false) { return item }
@@ -79,6 +104,10 @@ class PaymentList extends Component {
 
     }
 
+    if (this.state.isClickedOverdue) {
+      console.log(this.state.overdueList)
+      sortlist=[...this.state.overdueList]
+    }
     let list = sortlist.map(item => (
     
       <tr key={item.id}>
@@ -113,7 +142,20 @@ class PaymentList extends Component {
       )
     }
 
+    const description = ()=>{
+      
+      if (!this.state.isClickedOverdue) {
+        return (       
+        <>
+          <p className="description">{this.state.notPaid ? 'Now it shows only NOT Paid your bills ' : 'Now it shows ALL your payments '}</p>
+          {dateRange()}
+        </>)
 
+      } else {
+        return null
+      }
+      
+    }
   
 
   const tabheader= ()=>{
@@ -122,11 +164,14 @@ class PaymentList extends Component {
           
           <div className='filterRow'>
             <div className="filterRange">
-              <p className="description">{this.state.notPaid ? 'Now it shows only NOT Paid your bills ' : 'Now it shows ALL your payments '}</p>
-              {dateRange()}
+              {description()}
+              
             </div>    
             <p className='btn-save' onClick={handleNotPaid}>{!this.state.notPaid ? 'Show UnPaid' : 'Show All'}</p>
           </div>
+
+          {overdueShow()}
+          
           <div className='tbheader'>
             <p className='itemRow-details'>Title of payment</p>
             <p className='itemRow-details '>Amount</p>

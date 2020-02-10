@@ -4,7 +4,10 @@ import '../../css/paymentItem.css'
 import left from '../functions/left'
 import { ReactComponent as Trash } from '../../images/trash.svg';
 
-const paymentItem = (props)=>{
+function PaymentItem(props) {
+
+  const [isHoover, setHoover] = React.useState(false)
+
   const {id, title, amount, date, paid } = props.item;
   const confirmPaid = props.confirmPaid;
   const handleEdit = props.handleEdit;
@@ -26,28 +29,41 @@ const paymentItem = (props)=>{
   
   let styles = {}
   
-  if (left(date) < 0 && !paid )
-  {
-    styles= {
-    backgroundColor: 'rgb(200, 21, 21)',
-    color : 'white'
-    }
-  } 
- 
-  if (left(date) === '0') {
-    styles= {
-      backgroundColor: 'rgb(240, 191, 30)',
-      color: 'white'
-    }
-  } 
+  if (isHoover) {
 
-   if ( paid )
-  {
-    styles= {
-    backgroundColor: 'rgb(181, 254, 97)'
+    styles = {
+      backgroundColor: 'rgb(255, 255, 200)'
     }
-  } 
+  } else {
 
+    if (left(date) < 0 && !paid) {
+      styles = {
+        backgroundColor: 'rgb(200, 21, 21)',
+        color: 'white'
+      }
+    }
+
+    if (left(date) === '0') {
+      styles = {
+        backgroundColor: 'rgb(240, 191, 30)',
+        color: 'white'
+      }
+    }
+
+    if (paid) {
+      styles = {
+        backgroundColor: 'rgb(181, 254, 97)'
+      }
+    }
+
+  }
+
+  
+
+  const toggleHover = () => {
+    setHoover(!isHoover)
+  }
+  
   const infoDays = ()=>{
     if ((left(date) < 0) && (!paid)) {
       return (<p className='itemRow-details center' onClick={handleIdEdit} >overdue</p>)
@@ -58,8 +74,9 @@ const paymentItem = (props)=>{
     }
     }
 
+ 
   return (
-    <div className='itemRow' style={styles} >
+    <div className='itemRow' style={styles} onMouseEnter={toggleHover} onMouseLeave={toggleHover} >
       <p className='itemRow-details ' onClick={handleIdEdit}>{title}</p>
       <p className='itemRow-details center' onClick={handleIdEdit} >{parseFloat(amount).toFixed(2)}</p>
       <p className='itemRow-details center' onClick={handleIdEdit} >{date}</p>
@@ -73,4 +90,4 @@ const paymentItem = (props)=>{
   )
 }
 
-export default paymentItem;
+export default PaymentItem;

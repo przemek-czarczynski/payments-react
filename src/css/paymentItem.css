@@ -39,6 +39,8 @@
   width: 100%;
   height: 100%;
   padding-left: 10px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .itemRow-trash{
@@ -92,12 +94,19 @@
 }
 
 .trash {
-  color : black;
+  color : rgb(44, 44, 44);
   margin: 0 10px;
   transform: scale(0.7);
   width: 50px;
   height: 50px;
+  opacity: 70%;
+  transition: 0.2s;
   
+}
+
+.svgWrapper:hover .trash {
+ opacity: 100%;
+
 }
 
 .svgWrapper {
@@ -108,9 +117,9 @@
   z-index: 99;
   cursor: pointer;
   background-color: white;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 .svgWrapper:hover {
-  background-color: yellow;
+  background-color: rgb(255, 255, 200);
   
 }
