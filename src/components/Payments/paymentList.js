@@ -72,10 +72,15 @@ class PaymentList extends Component {
 
   
     const overdueShow =()=>{
+      let className = 'btn-overdue'
+      if (this.state.isClickedOverdue) {className = 'btn-overdue-clicked'}
       return (
-        overdueList.length>0 ? <div className="">You have {overdueList.length} overdue payments 
-        <p className='btn-save' onClick={()=>this.setOverduePayments(overdueList)}>{this.state.isClickedOverdue?'Back':'Show Me'}</p>
-        </div> : ''
+        overdueList.length>0 ?  
+        <div className={className} onClick={()=>this.setOverduePayments(overdueList)}>
+          <p className='p-overdue' >
+          {this.state.isClickedOverdue?'Click here to back to the previous list':`You have ${overdueList.length} total overdue payments - click here to show`}</p>
+        </div> 
+        : ''
       )
     }
 
@@ -161,16 +166,18 @@ class PaymentList extends Component {
   const tabheader= ()=>{
     return (
         <div>
-          
+          {overdueShow()}
           <div className='filterRow'>
+          
             <div className="filterRange">
+              
               {description()}
               
             </div>    
             <p className='btn-save' onClick={handleNotPaid}>{!this.state.notPaid ? 'Show UnPaid' : 'Show All'}</p>
           </div>
 
-          {overdueShow()}
+          
           
           <div className='tbheader'>
             <p className='itemRow-details'>Title of payment</p>

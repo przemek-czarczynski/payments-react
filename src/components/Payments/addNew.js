@@ -15,7 +15,8 @@ state={
         dayalert: '0',
         paid: false,
         redirect: false,
-        cancel: false
+        cancel: false,
+        errorMsg: ''
   }
   
   componentDidMount() {
@@ -29,18 +30,27 @@ state={
 
   
   handleChange= (e) =>{  
-    this.setState( {
-      [e.target.id]: e.target.value
-    })
+    
+      this.setState( {
+        [e.target.id]: e.target.value,
+        errorMsg : ''
+      })
+    
   }
 
   handleSubmit = (e)=>{
+    e.preventDefault();
+    if (this.state.title === '' || this.state.amount === '' || parseFloat(this.state.amount) <= 0) {
+      this.setState({ errorMsg : 'The Title field cannot be empty and Amount must be greater than 0'})
+      return null
+    } else {
       this.setState({
-        redirect: true
+        redirect: true,
+        errorMsg : ''
       })
-      e.preventDefault();
       this.props.addNew(this.state);   
   }
+}
 
     handleCancel = (e) => {
       this.props.clearPath()
@@ -57,8 +67,8 @@ state={
         }
         
         <form className="addnewpayment-form" onSubmit={this.handleSubmit}>
-          <p className="description">Add New Payment To Your List</p>
-          <label htmlFor="title">Title (For): </label>
+          <p className="description">Add New Payment</p>
+          <label htmlFor="title">Title: </label>
           <input type="text" id="title" onChange={this.handleChange} value={this.state.title}/>
           
 
@@ -85,7 +95,7 @@ state={
             <button className="btn-save" onClick={this.handleCancel}>Cancel</button>
           </div>
       </form>
-        
+      <p className='errorMsg'>{this.state.errorMsg ? this.state.errorMsg : ''}</p>  
     </div>
     
   );

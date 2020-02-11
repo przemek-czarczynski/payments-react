@@ -98,3 +98,33 @@ background-color: cornflowerblue;
   margin-left: 10px;
   font-size: 1.2rem;
 }
+
+.btn-overdue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-overdue-clicked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.p-overdue {
+  font-weight: bold;
+  animation: blinking 2s infinite;
+}
+
+@keyframes blinking {
+  0% {color: white}
+  51% {color: red}
+}

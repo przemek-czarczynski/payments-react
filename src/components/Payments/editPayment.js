@@ -16,7 +16,8 @@ state={
         dayalert: '0',
         paid: false,
         redirect: false,
-        cancel: false
+        cancel: false,
+        errorMsg:''
   }
   
   clearPath = this.props.clearPath;
@@ -69,18 +70,26 @@ state={
 
   handleChange= (e) =>{  
     this.setState( {
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
+      errorMsg:''
     })
   }
 
   handleSubmit = (e)=>{
+     e.preventDefault();
+     if (this.state.title === '' || this.state.amount === '' || parseFloat(this.state.amount) <= 0) {
+       this.setState({
+         errorMsg: 'The Title field cannot be empty and Amount must be greater than 0'
+       })
+       return null
+     } else {
       this.setState({
         redirect: true
-      })
-      e.preventDefault();
+      })     
       this.setState({refState: null})
       this.props.handleSubmitEdit(this.state);   
   }
+}
 
   handleCancel = (e) => {
     this.setState({
@@ -141,7 +150,7 @@ state={
             <button className="btn-save" onClick={this.handleCancel}>Anuluj</button>
           </div>
       </form>
-        
+      <p className='errorMsg'>{this.state.errorMsg ? this.state.errorMsg : ''}</p>   
     </div>
   );
 
