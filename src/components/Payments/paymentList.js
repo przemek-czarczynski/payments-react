@@ -152,7 +152,7 @@ class PaymentList extends Component {
       if (!this.state.isClickedOverdue) {
         return (       
         <>
-          <p className="description">{this.state.notPaid ? 'Now it shows only NOT Paid your bills ' : 'Now it shows ALL your payments '}</p>
+          {/* <p className="description">{this.state.notPaid ? 'Now it shows only NOT Paid your bills ' : 'Now it shows ALL your payments '}</p> */}
           {dateRange()}
         </>)
 
@@ -165,7 +165,7 @@ class PaymentList extends Component {
 
   const tabheader= ()=>{
     return (
-        <div>
+        <>
           {overdueShow()}
           <div className='filterRow'>
           
@@ -181,25 +181,25 @@ class PaymentList extends Component {
           
           <div className='tbheader'>
             <p className='itemRow-details'>Title of payment</p>
-            <p className='itemRow-details '>Amount</p>
-            <p className='itemRow-details'>Due Date</p>
-            <p className='itemRow-details'>Left days to pay</p> 
-            <p className='itemRow-details'>Status</p>    
+            <p className='itemRow-details tbheader-amount'>Amount</p>
+            <p className='itemRow-details tbheader-date'>Due Date</p>
+            <p className='itemRow-details tbheader-days'>Left days to pay</p> 
+            <p className='itemRow-details tbheader-status'>Status</p>    
             <p className='itemRow-trash'></p>    
           </div>
-      </div>
+      </>
     )
   }
 
 
 
   return (
-      <div>
+      <>
         <div className='listPage'>
           {displayh1()}     
           {list}    
         </div>
-      </div>
+      </>
     )
 }
   

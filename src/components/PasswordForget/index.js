@@ -5,7 +5,9 @@ import * as ROUTES from '../../constants/routes';
 import '../../css/passwordforgot.css';
 const PasswordForgetPage = () => (
   <div className="wrapper columns">
-    <h1>Password Forget</h1>
+    <div className="topInfo">
+      <h1 className="topInfo-h1">Password Forget</h1>
+    </div>  
     <PasswordForgetForm />
   </div>
 );

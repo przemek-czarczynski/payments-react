@@ -7,11 +7,7 @@
 
 }
 
-.columns {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 
 .description {
   font-size: 1rem;
@@ -44,32 +40,12 @@
 }
 
 
-
-.topInfo {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: rgb(85, 124, 255);
-  color : white;
-  height: 80px;
-  width: 100vw;
-  margin-bottom: 80px;
-  
-}
-
-
-
-.topInfo-h1 {
-  display: block;
-  width: 100%;
-  text-align: center;
-}
 .topInfo-add {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50px;
-  z-index: 99;
+  z-index: 1;
 }
 .topInfo-add-link {
   display: flex;
@@ -127,4 +103,80 @@ background-color: cornflowerblue;
 @keyframes blinking {
   0% {color: white}
   51% {color: red}
+}
+
+@media screen and (max-width: 800px) {
+
+  .listPage{
+    width: 100vw;
+  }
+
+  .p-overdue {
+   font-size: 0.7rem;
+   
+  }
+
+  .filterRow{
+    width: 100%;
+    justify-content: space-around;
+  }
+  .dateRange{
+    flex-direction: column;
+    /* margin-left: 50px; */
+    
+  }
+  .dateRange label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+  }
+  .dateRange label,
+  .dateRange input {
+    font-size: 0.7rem;
+  }
+
+  .filterRow .btn-save {
+    font-size: 0.7rem;
+    margin-right: 50px;
+    width: 90px;
+  }
+
+  .tbheader , .itemRow {
+    font-size: 0.6rem;
+    width: 100vw;
+  }
+
+  .tbheader-amount,
+  .tbheader-date {
+    text-align: center;
+    margin-left: -20px;
+  }
+
+  .tbheader-date {
+    margin-left: -17px;
+  }
+
+  .tbheader-days {
+    text-align: center;
+    margin-left: -30px;
+    padding: 0 15px;
+    font-size: 0.5rem ;
+  }
+  .tbheader-status{
+    margin-left: -10px;
+  }
+
+
+  .btn-not-confirmed {
+    margin-left: 10px;
+  }
+  .svgWrapper {
+    margin-right: 25px;
+    width: 45px;
+  }
+
+  .itemRow-details {
+    justify-content: start;
+  }
 }

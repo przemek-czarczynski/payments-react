@@ -183,36 +183,41 @@ class PaymentsAuth extends Component {
     }
   
     return(
-      <div>
+      <div className="wrapper columns">
             
-            <Router>     
-              {this.renderRedirect()}
-              <div className="topInfo">
-                <h1 className="topInfo-h1">Your Payments List</h1>
-                <div className="topInfo-add">
-                  <Link to='/payments/add' className="topInfo-add-link" style={stylesAddBtn}>Add New</Link>    
-                </div>
+        <Router>     
+          {this.renderRedirect()}
+          
+            <div className="topInfo">
+              <h1 className="topInfo-h1">Your Payments List</h1>
+              <div className="topInfo-add">
+                <Link to='/payments/add' className="topInfo-add-link" style={stylesAddBtn}>Add New</Link>    
               </div>
-              <Switch>
-                <Route path="/payments/add">             
-                  <AddNew 
-                    addNew={this.addNew}
-                    changeFlag={this.changeFlag}
-                    clearPath={this.clearPath} 
-                  />
-                </Route>    
-                <Route path="/payments/edit">             
-                  <EditPayment 
-                    id={this.state.IdEdit}
-                    clearPath={this.clearPath} 
-                    handleSubmitEdit={this.handleSubmitEdit} 
-                    />
-                </Route>  
-              </Switch>        
-            </Router>
-            {this.showMessage()}
-            {this.showList()}
-          </div>
+            </div>
+            
+          <Switch>
+            <Route path="/payments/add">             
+              <AddNew 
+                addNew={this.addNew}
+                changeFlag={this.changeFlag}
+                clearPath={this.clearPath} 
+              />
+            </Route>    
+            <Route path="/payments/edit">             
+              <EditPayment 
+                id={this.state.IdEdit}
+                clearPath={this.clearPath} 
+                handleSubmitEdit={this.handleSubmitEdit} 
+                />   
+            </Route>  
+          </Switch> 
+                
+        </Router>
+
+        {this.showMessage()}
+        {this.showList()}
+        
+      </div>
     
     )
   }

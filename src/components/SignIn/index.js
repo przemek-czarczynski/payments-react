@@ -9,7 +9,9 @@ import '../../css/signin.css';
 
 const SignInPage = () => (
   <div className="wrapper columns">
-    <h1>Login</h1>
+    <div className="topInfo">
+      <h1 className="topInfo-h1">Login</h1>
+    </div>  
     <SignInForm />
     <PasswordForgetLink />
     <SignUpLink />

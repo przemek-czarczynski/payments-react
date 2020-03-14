@@ -10,7 +10,9 @@ import '../../css/signup.css'
 
 const SignUpPage = () => (
   <div className="wrapper columns">
-    <h1>Sign Up Form</h1>
+    <div className="topInfo">
+      <h1 className="topInfo-h1">Sign Up Form</h1>
+    </div>  
      <SignUpForm/>
     
   </div>

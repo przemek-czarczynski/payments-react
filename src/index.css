@@ -53,12 +53,6 @@ body {
   
 }
 
-.columns {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 .marginLeft {
   margin-left: 10rem;
@@ -123,4 +117,43 @@ cursor: pointer;
 .errorMsg {
   color: red;
   font-size: .8rem;
+}
+
+.columns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(85, 124, 255);
+  color: white;
+  height: 80px;
+  width: 100vw;
+  margin-bottom: 65px;
+
+}
+
+
+.topInfo-h1 {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .topInfo {
+    height: 40px;
+  }
+  .topInfo-h1 {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  .topInfo-add {
+
+  }
 }
