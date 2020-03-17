@@ -80,7 +80,7 @@ class App extends Component {
       this.state.payments.filter((item, i) => {
         if (item.id===id) {
             index = i; 
-            return                    
+            return null                   
         }
       });
 
@@ -100,7 +100,7 @@ class App extends Component {
 
       return (
         <div className="App">
-         <Router>
+         <Router basename={process.env.PUBLIC_URL}>
           <header className="App-header">
             <p>Manage your paymnets every day</p>
             <Navbar/>

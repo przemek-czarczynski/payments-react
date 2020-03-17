@@ -71,3 +71,52 @@
   justify-content: space-around;
   margin-bottom: 20px;
 }
+
+@media screen and (max-width: 800px) {
+
+    .wrapper {
+      background-color: #eee;
+      height: 100vh;
+    }
+    .wrapper .columns {
+      justify-content: start;
+    }
+
+    .addnewpayment-form {
+      margin-top: 30px;
+      width: 80vw;
+    }
+
+    .addnewpayment-form input,
+    .addnewpayment-form textarea, 
+    .addnewpayment-form label{
+      font-size: 1rem;
+      width: 70vw;
+    }
+    
+    .addnewpayment-form label{
+      font-size: 0.8rem;
+    }
+
+    .form-row {
+      width: 70vw;
+      display: block;
+    }
+
+    .form-row label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .form-row .form-date{
+      text-align: right;
+    }
+
+    .form-isPaid select{
+      font-size: 1rem;
+    }
+    .form-isPaid option{
+      font-size: 0.7rem;
+    }
+}

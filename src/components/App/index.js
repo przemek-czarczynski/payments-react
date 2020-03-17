@@ -20,7 +20,7 @@ import { withAuthentication } from '../Session';
 
 
 const App = () => (
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <div>
           <Navigation />
            

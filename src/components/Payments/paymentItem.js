@@ -78,7 +78,7 @@ function PaymentItem(props) {
   return (
     <div className='itemRow' style={styles} onMouseEnter={toggleHover} onMouseLeave={toggleHover} >
       <p className='itemRow-details ' onClick={handleIdEdit}>{title}</p>
-      <p className='itemRow-details center' onClick={handleIdEdit} >{parseFloat(amount).toFixed(2)}</p>
+      <p className='itemRow-details align-right' onClick={handleIdEdit} >{parseFloat(amount).toFixed(2)}</p>
       <p className='itemRow-details center' onClick={handleIdEdit} >{date}</p>
       {/* <p className='itemRow-details center' onClick={handleIdEdit} >{left(date)<0 ? 'overdue' : left(date)}</p> */}
       {infoDays()}
