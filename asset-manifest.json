@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/payments-react/static/css/main.a989bc4f.chunk.css",
+    "main.css": "/payments-react/static/css/main.2e3c087e.chunk.css",
     "main.js": "/payments-react/static/js/main.d1a9180e.chunk.js",
     "main.js.map": "/payments-react/static/js/main.d1a9180e.chunk.js.map",
     "runtime-main.js": "/payments-react/static/js/runtime-main.602a2fdc.js",
@@ -8,9 +8,9 @@
     "static/js/2.227b90ef.chunk.js": "/payments-react/static/js/2.227b90ef.chunk.js",
     "static/js/2.227b90ef.chunk.js.map": "/payments-react/static/js/2.227b90ef.chunk.js.map",
     "index.html": "/payments-react/index.html",
-    "precache-manifest.8831689fda5590ea032c06ead147ea33.js": "/payments-react/precache-manifest.8831689fda5590ea032c06ead147ea33.js",
+    "precache-manifest.36e2648fa3328a3001e3b3bccd27cd71.js": "/payments-react/precache-manifest.36e2648fa3328a3001e3b3bccd27cd71.js",
     "service-worker.js": "/payments-react/service-worker.js",
-    "static/css/main.a989bc4f.chunk.css.map": "/payments-react/static/css/main.a989bc4f.chunk.css.map",
+    "static/css/main.2e3c087e.chunk.css.map": "/payments-react/static/css/main.2e3c087e.chunk.css.map",
     "static/js/2.227b90ef.chunk.js.LICENSE": "/payments-react/static/js/2.227b90ef.chunk.js.LICENSE",
     "static/media/paymentsListLayout.jpg": "/payments-react/static/media/paymentsListLayout.2792f58f.jpg",
     "static/media/trash.740028d4.svg": "/payments-react/static/media/trash.740028d4.svg"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.602a2fdc.js",
     "static/js/2.227b90ef.chunk.js",
-    "static/css/main.a989bc4f.chunk.css",
+    "static/css/main.2e3c087e.chunk.css",
     "static/js/main.d1a9180e.chunk.js"
   ]
 }
