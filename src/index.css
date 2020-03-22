@@ -1,157 +1,171 @@
 :root {
-  --main-bg-color:rgb(0, 47, 202);
-  --font-family: -apple-system,
-  BlinkMacSystemFont,
-  'Segoe UI',
-  'Roboto',
-  'Oxygen',
-  'Ubuntu',
-  'Cantarell',
-  'Fira Sans',
-  'Droid Sans',
-  'Helvetica Neue',
-  sans-serif;
+    --main-bg-color: rgb(0, 47, 202);
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
-
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
 }
 
 .wrapper {
-  display: flex;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
 }
 
 .holder {
-  display: flex;
-  width: 80vw;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    width: 80vw;
+    justify-content: center;
+    align-items: center;
 }
 
 .holder-2col {
-  display: flex;
-  width: 80vw;
-  justify-content: space-evenly;
-  align-items: center;
+    display: flex;
+    width: 80vw;
+    justify-content: space-evenly;
+    align-items: center;
 }
-.holder p{
-  align-self: flex-start;
+.holder p {
+    align-self: flex-start;
 }
 .holder-2col p {
-  align-self: center;
+    align-self: center;
 }
 .holder p,
 .holder-2col p {
-  padding: 0;
-  
+    padding: 0;
+
 }
 
-
 .marginLeft {
-  margin-left: 10rem;
+    margin-left: 10rem;
 }
 
 label {
-  display: block;
+    display: block;
 }
-
-
 
 .btn-save {
-display: inline-block;
-line-height: 100%;
-padding: 10px 25px;
-width: 120px;
-background-color: cornflowerblue;
-color: white;
-text-transform: uppercase;
-text-align: center;
-font-weight: bold;
-cursor: pointer;
+    display: inline-block;
+    line-height: 100%;
+    padding: 10px 25px;
+    width: 120px;
+    background-color: cornflowerblue;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
 }
-
 .btn-save:hover {
-  background-color: darkblue;
+    background-color: darkblue;
 
 }
-
-
 
 .line {
-  width: 95%;
-  margin: 15px;
-  border-bottom: 1px solid grey;
+    width: 95%;
+    margin: 15px;
+    border-bottom: 1px solid grey;
 }
 
 .center {
-  text-align: center;
+    text-align: center;
 }
 
 .layout-img {
-  width: 50%;
-  height: 50%;
-  padding-top: 20px;
+    width: 50%;
+    height: 50%;
+    padding-top: 20px;
 }
 
 .layout-signup {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-transform: uppercase;
 }
 
 .layout-signup a {
-  text-decoration: none;
+    text-decoration: none;
 
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .errorMsg {
-  color: red;
-  font-size: .8rem;
+    color: red;
+    font-size: 0.8rem;
 }
 
 .columns {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .topInfo {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: rgb(85, 124, 255);
-  color: white;
-  height: 80px;
-  width: 100vw;
-  margin-bottom: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(85, 124, 255);
+    color: white;
+    height: 80px;
+    width: 100vw;
+    margin-bottom: 65px;
 
 }
 
-
 .topInfo-h1 {
-  display: block;
-  width: 100%;
-  text-align: center;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.auth-side p {
+  margin-bottom: 50px;
 }
 
 @media screen and (max-width: 800px) {
-  .topInfo {
-    height: 40px;
-  }
-  .topInfo-h1 {
-    font-size: 1rem;
-    margin-top: 10px;
-  }
-  
+    .topInfo {
+        height: 40px;
+    }
+    .topInfo-h1 {
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+
+    .holder {
+        margin-top: -60px;
+    }
+
+    .holder-2col {
+        flex-direction: column;
+        width: 80vw;
+        justify-content: center;
+
+    }
+
+    .layout-img {
+        width: 100%;
+        height: 100%;
+        margin-bottom: 10px;
+    }
+    .auth-side {
+        display: flex;
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px solid grey;
+    }
+
+    .auth-side p {
+        border-left: 2px solid white;
+        border-right: 2px solid white;
+        font-size: 0.7rem;
+    }
 }

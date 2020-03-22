@@ -6,21 +6,19 @@ import { AuthUserContext } from '../Session';
 import '../../css/sidebar.css';
 
 const Navigation = () => (
-  <div><AuthUserContext.Consumer>
-      
-      {authUser => 
-        
-        (authUser) ? <NavigationAuth authUser={authUser}/> : <NavigationNonAuth />
-      
+    <AuthUserContext.Consumer>
+      {authUser =>         
+        (authUser) ? 
+          <NavigationAuth authUser={authUser}/> : 
+          <NavigationNonAuth />    
       }
     </AuthUserContext.Consumer>
-  </div>
 );
 class NavigationAuth extends Component { 
 
   state= {
-  isToggled : false,
-  className : ''
+    isToggled : false,
+    className : ''
   }
 
   handleClass = ()=>{
@@ -36,40 +34,39 @@ class NavigationAuth extends Component {
       })
     }
   }
-render(){
+  render(){
 
-  let nav_toggle_Styles = `nav-toggle ${this.state.className}`;
-  let nav_Styles = `nav ${this.state.className}`
-  
-  return(
-  <>
-    <div className={nav_toggle_Styles} onClick={this.handleClass}>
-      <div className="nav-toggle-bar"></div>
-    </div>
+    let nav_toggle_Styles = `nav-toggle ${this.state.className}`;
+    let nav_Styles = `nav ${this.state.className}`
+    
+    return(
+      <>
+        <div className={nav_toggle_Styles} onClick={this.handleClass}>
+          <div className="nav-toggle-bar"></div>
+        </div>
 
-    <nav className={nav_Styles} onClick={this.handleClass}>
-      <ul>
-        <li>
-          <Link to={ROUTES.LANDING}>Landing</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.HOME}>Home</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.PAYMENTS}>Payments</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.ACCOUNT}>Account</Link>
-        </li>
-        <li>
-          <SignOutButton />
-        </li>
-      </ul>
-    </nav>
-  </>
-)
-}
-
+        <nav className={nav_Styles} onClick={this.handleClass}>
+          <ul>
+            <li>
+              <Link to={ROUTES.LANDING}>Landing</Link>
+            </li>
+            {/* <li>
+              <Link to={ROUTES.HOME}>Home</Link>
+            </li> */}
+            <li>
+              <Link to={ROUTES.PAYMENTS}>Payments</Link>
+            </li>
+            <li>
+              <Link to={ROUTES.ACCOUNT}>Account</Link>
+            </li>
+            <li>
+              <SignOutButton />
+            </li>
+          </ul>
+        </nav>
+      </>
+    ) 
+  }
 };
 
 class NavigationNonAuth extends Component {
@@ -114,8 +111,6 @@ class NavigationNonAuth extends Component {
       </>
     )
   }
-
 }
-
 
 export default Navigation;

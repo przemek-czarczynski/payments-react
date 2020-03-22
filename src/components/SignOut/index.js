@@ -3,7 +3,7 @@ import { withFirebase } from '../Firebase';
 
 
 const handleClick =( firebase )=>{
-firebase.doSignOut();
+  firebase.doSignOut();
 
 }
 const SignOutButton = ({firebase}) => (

@@ -1,23 +1,21 @@
 import React , {Component} from 'react'
-import {
-  Redirect
-} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import '../../css/addNew.css';
 import { firestore } from 'firebase';
 
 class EditPayment extends Component {
   
-state={
-        id: '',
-        title: '',
-        details: '',
-        amount: '0',
-        date: '',
-        dayalert: '0',
-        paid: false,
-        redirect: false,
-        cancel: false,
-        errorMsg:''
+  state={
+          id: '',
+          title: '',
+          details: '',
+          amount: '0',
+          date: '',
+          dayalert: '0',
+          paid: false,
+          redirect: false,
+          cancel: false,
+          errorMsg:''
   }
   
   clearPath = this.props.clearPath;
@@ -28,38 +26,37 @@ state={
     }
   }
   async componentDidMount(){
-    //  firestore().collection('documents').get()
      
     const refState = this.state;
     
-     const docRef = firestore().collection('documents').doc(this.props.id);
+    const docRef = firestore().collection('documents').doc(this.props.id);
 
-     await docRef.get().then(function (doc) {
-       if (doc.exists) {
+    await docRef.get()
+      .then(function (doc) {
+        if (doc.exists) {
           refState.title= doc.data().title
           refState.details= doc.data().details
           refState.amount= doc.data().amount
           refState.date= doc.data().date
           refState.dayalert= doc.data().dayalert
-          refState.paid= doc.data().paid
-          // return this.refState       
-       } 
-     })     
+          refState.paid= doc.data().paid       
+        } 
+      })     
      .catch(function (error) {
-       console.log("Error getting document:", error);
-     });
+        console.log("Error getting document:", error);
+      });
      
-     const {title, details, amount, date, dayalert, paid} = refState;
-     this.setState({
-       id: this.props.id,
-       title,
-       details,
-       amount,
-       date,
-       dayalert,
-       paid
-     })
-    
+    const {title, details, amount, date, dayalert, paid} = refState;
+     
+    this.setState({
+      id: this.props.id,
+      title,
+      details,
+      amount,
+      date,
+      dayalert,
+      paid
+    })
   }
 
   handlePaid = (e)=>{
@@ -88,8 +85,8 @@ state={
       })     
       this.setState({refState: null})
       this.props.handleSubmitEdit(this.state);   
+     }
   }
-}
 
   handleCancel = (e) => {
     this.setState({
@@ -99,23 +96,24 @@ state={
 
   isPaid = ()=> {
     const ispaid = !this.state.paid ? '0' : '1'; 
+  
     return (
-    <label className="form-isPaid">Payment is Paid
-          <select name='paid' value={ispaid} onChange={this.handlePaid}>
-            <option value='1'>Yes</option>
-            <option value='0' >No</option>
-            
-          </select>
-    </label>
-  )}
+  
+      <label className="form-isPaid">Payment is Paid
+        <select name='paid' value={ispaid} onChange={this.handlePaid}>
+          <option value='1'>Yes</option>
+          <option value='0' >No</option>    
+        </select>
+      </label>
+    )
+  }
 
   render(){
     
     return (
       
       <div className='addnewpayment'>
-        {  this.renderRedirect()
-        }
+        {this.renderRedirect()}
         
         <form className="addnewpayment-form" onSubmit={this.handleSubmit}>
           <p className="description">Edit Payment Details</p>
@@ -136,26 +134,20 @@ state={
               <input className="form-date" type="date" id='date' onChange={this.handleChange} value={this.state.date}/>
             </label>
           </div>
-            {this.isPaid()}
-          
-          {/* <label htmlFor="">Set Alert Before Date of Payment
-            <input className='text-right input-250' type="number" id="dayalert" min='0' onChange={this.handleChange} value={this.state.dayalert}/>
-          </label> */}
-
-          
-
+        
+          {this.isPaid()}
+        
           <div className="line"></div>
           <div className="form-btns">
             <button className="btn-save">Zapisz</button>
             <button className="btn-save" onClick={this.handleCancel}>Anuluj</button>
           </div>
-      </form>
-      <p className='errorMsg'>{this.state.errorMsg ? this.state.errorMsg : ''}</p>   
-    </div>
-  );
-
-  }
-  
+        </form>
+        
+        <p className='errorMsg'>{this.state.errorMsg ? this.state.errorMsg : ''}</p>   
+      </div>
+    );
+  } 
 }
 
 export default EditPayment;

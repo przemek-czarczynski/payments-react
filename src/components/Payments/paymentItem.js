@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../css/paymentItem.css'
-
 import left from '../functions/left'
 import { ReactComponent as Trash } from '../../images/trash.svg';
 
@@ -30,12 +29,10 @@ function PaymentItem(props) {
   let styles = {}
   
   if (isHoover) {
-
     styles = {
       backgroundColor: 'rgb(255, 255, 200)'
     }
   } else {
-
     if (left(date) < 0 && !paid) {
       styles = {
         backgroundColor: 'rgb(200, 21, 21)',
@@ -55,35 +52,45 @@ function PaymentItem(props) {
         backgroundColor: 'rgb(181, 254, 97)'
       }
     }
-
   }
 
   
-
   const toggleHover = () => {
     setHoover(!isHoover)
   }
   
   const infoDays = ()=>{
     if ((left(date) < 0) && (!paid)) {
-      return (<p className='itemRow-details center' onClick={handleIdEdit} >overdue</p>)
+      return (
+        <p className='itemRow-details center' onClick={handleIdEdit} >overdue</p>
+      )
     } else if (paid) {
-      return (<p className='itemRow-details center' onClick={handleIdEdit} >-</p>)
+      return (
+        <p className='itemRow-details center' onClick={handleIdEdit} >-</p>
+      )
     } else {
-      return (<p className='itemRow-details center' onClick={handleIdEdit} >{left(date)}</p>)
+      return (
+        <p className='itemRow-details center' onClick={handleIdEdit} >{left(date)}</p>
+      )
     }
-    }
+  }
 
  
   return (
+
     <div className='itemRow' style={styles} onMouseEnter={toggleHover} onMouseLeave={toggleHover} >
+      
       <p className='itemRow-details ' onClick={handleIdEdit}>{title}</p>
       <p className='itemRow-details align-right' onClick={handleIdEdit} >{parseFloat(amount).toFixed(2)}</p>
       <p className='itemRow-details center' onClick={handleIdEdit} >{date}</p>
-      {/* <p className='itemRow-details center' onClick={handleIdEdit} >{left(date)<0 ? 'overdue' : left(date)}</p> */}
+      
       {infoDays()}
+      
       {didpaid}
-      <div className="svgWrapper" onClick={handleIdDelete}><Trash className="trash"/></div>
+      
+      <div className="svgWrapper" onClick={handleIdDelete}>
+        <Trash className="trash"/>
+      </div>
       
     </div>
     

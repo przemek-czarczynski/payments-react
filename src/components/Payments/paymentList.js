@@ -22,6 +22,7 @@ class PaymentList extends Component {
     const startDate = `${year}-${month}-${day}`;
     
     let endDate = pdate.getTime() + ((24 * 60 * 60 * 1000) * days)
+   
     pdate = new Date(endDate)
     year = pdate.getFullYear();
     month = ((pdate.getMonth() + 1) > 9) ? (pdate.getMonth() + 1) : `0${(pdate.getMonth()+1)}`;
@@ -54,6 +55,7 @@ class PaymentList extends Component {
   }
 
   render() {
+   
     let sortlist=[]
 
     const props = this.props
@@ -72,8 +74,11 @@ class PaymentList extends Component {
 
   
     const overdueShow =()=>{
+   
       let className = 'btn-overdue'
+   
       if (this.state.isClickedOverdue) {className = 'btn-overdue-clicked'}
+   
       return (
         overdueList.length>0 ?  
         <div className={className} onClick={()=>this.setOverduePayments(overdueList)}>
@@ -123,25 +128,28 @@ class PaymentList extends Component {
           handleDelete={handleDelete}
           />
       </tr>  
-      
-      ));
+    ));
 
     const displayh1 = () => {
         const tb = tabheader();
         return (props.payments.length > 0 ? tb : <h1> Empty List </h1>)
-
-        }
+    }
     
 
     const dateRange = () => {
+    
       return (
         <div className="dateRange">
           <label>From:
-          <input type="date" id='startDate' onChange={this.handleChangeDate} value={this.state.startDate} />
+            <input type="date" id='startDate' 
+              onChange={this.handleChangeDate} 
+              value={this.state.startDate} />
           </label>
 
           <label>To:
-          <input type="date" id='endDate' onChange={this.handleChangeDate} value={this.state.endDate} />
+            <input type="date" id='endDate' 
+              onChange={this.handleChangeDate} 
+              value={this.state.endDate} />
           </label>
         </div>
       )
@@ -151,58 +159,53 @@ class PaymentList extends Component {
       
       if (!this.state.isClickedOverdue) {
         return (       
-        <>
-          {/* <p className="description">{this.state.notPaid ? 'Now it shows only NOT Paid your bills ' : 'Now it shows ALL your payments '}</p> */}
-          {dateRange()}
-        </>)
-
+          <>
+            {dateRange()}
+          </>
+        )
       } else {
         return null
       }
-      
     }
   
 
-  const tabheader= ()=>{
+    const tabheader= ()=>{
+      return (
+          <>
+            {overdueShow()}
+            <div className='filterRow'>
+            
+              <div className="filterRange">
+                
+                {description()}
+                
+              </div>    
+              <p className='btn-save' onClick={handleNotPaid}>{!this.state.notPaid ? 'Show UnPaid' : 'Show All'}</p>
+            </div>
+
+            
+            
+            <div className='tbheader'>
+              <p className='itemRow-details'>Title of payment</p>
+              <p className='itemRow-details tbheader-amount'>Amount</p>
+              <p className='itemRow-details tbheader-date'>Due Date</p>
+              <p className='itemRow-details tbheader-days'>Left days to pay</p> 
+              <p className='itemRow-details tbheader-status'>Status</p>    
+              <p className='itemRow-trash'></p>    
+            </div>
+        </>
+      )
+    }
+
     return (
         <>
-          {overdueShow()}
-          <div className='filterRow'>
-          
-            <div className="filterRange">
-              
-              {description()}
-              
-            </div>    
-            <p className='btn-save' onClick={handleNotPaid}>{!this.state.notPaid ? 'Show UnPaid' : 'Show All'}</p>
+          <div className='listPage'>
+            {displayh1()}     
+            {list}    
           </div>
-
-          
-          
-          <div className='tbheader'>
-            <p className='itemRow-details'>Title of payment</p>
-            <p className='itemRow-details tbheader-amount'>Amount</p>
-            <p className='itemRow-details tbheader-date'>Due Date</p>
-            <p className='itemRow-details tbheader-days'>Left days to pay</p> 
-            <p className='itemRow-details tbheader-status'>Status</p>    
-            <p className='itemRow-trash'></p>    
-          </div>
-      </>
-    )
+        </>
+      )
   }
-
-
-
-  return (
-      <>
-        <div className='listPage'>
-          {displayh1()}     
-          {list}    
-        </div>
-      </>
-    )
-}
-  
 }
 
 export default PaymentList;

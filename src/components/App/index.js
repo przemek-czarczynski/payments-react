@@ -11,30 +11,24 @@ import EditPaymentPage from '../Payments/editPayment';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import * as ROUTES from '../../constants/routes';
-
-// import {
-//   AuthUserContext
-// } from '../Session';
-// import withAuthentication from './withAuthentication';
 import { withAuthentication } from '../Session';
 
 
 const App = () => (
       <Router basename={process.env.PUBLIC_URL}>
-        <div>
-          <Navigation />
+        
+        <Navigation />
+          
+        <Route exact path={ROUTES.LANDING} component={LandingPage} />
+        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+        <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+        <Route path={ROUTES.HOME} component={HomePage} />
+        <Route path={ROUTES.PAYMENTS} component={PaymentsPage} />
+        <Route path={ROUTES.EDITPAYMENT} component={EditPaymentPage} />
+        <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+        <Route path={ROUTES.ADMIN} component={AdminPage} />
            
-            <Route exact path={ROUTES.LANDING} component={LandingPage} />
-            <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-            <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-            <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-            <Route path={ROUTES.HOME} component={HomePage} />
-            <Route path={ROUTES.PAYMENTS} component={PaymentsPage} />
-            <Route path={ROUTES.EDITPAYMENT} component={EditPaymentPage} />
-            <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-            <Route path={ROUTES.ADMIN} component={AdminPage} />
-           
-        </div>
       </Router>
  );
 

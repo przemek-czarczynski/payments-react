@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
+
 const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',
   error: null,
 };
+
 class PasswordChangeForm extends Component {
   constructor(props) {
     super(props);
@@ -22,13 +24,14 @@ class PasswordChangeForm extends Component {
       });
     event.preventDefault();
   };
+  
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
   render() {
     const { passwordOne, passwordTwo, error } = this.state;
-    const isInvalid =
-      passwordOne !== passwordTwo || passwordOne === '';
+    const isInvalid = passwordOne !== passwordTwo || passwordOne === '';
+    
     return (
       <form className="signin" onSubmit={this.onSubmit}>
         
@@ -56,4 +59,5 @@ class PasswordChangeForm extends Component {
     );
   }
 }
+
 export default withFirebase(PasswordChangeForm);
